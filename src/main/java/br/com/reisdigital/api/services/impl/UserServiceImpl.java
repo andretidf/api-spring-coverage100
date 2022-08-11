@@ -7,6 +7,7 @@ import br.com.reisdigital.api.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,4 +23,10 @@ public class UserServiceImpl implements UserService {
 
         return  entity.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
+
+    @Override
+    public List<User> findAll() {
+        return repository.findAll();
+    }
+
 }
