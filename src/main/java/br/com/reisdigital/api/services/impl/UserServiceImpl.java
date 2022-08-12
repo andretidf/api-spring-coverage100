@@ -1,9 +1,11 @@
 package br.com.reisdigital.api.services.impl;
 
 import br.com.reisdigital.api.domain.User;
+import br.com.reisdigital.api.dto.UserDTO;
 import br.com.reisdigital.api.repositories.UserRepository;
 import br.com.reisdigital.api.services.UserService;
 import br.com.reisdigital.api.services.exceptions.ObjectNotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private ModelMapper mapper;
+
 
     @Override
     public User findById(Integer id) {
@@ -27,6 +32,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public User create(UserDTO obj) {
+        return repository.save(mapper.map(obj, User.class));
     }
 
 }
