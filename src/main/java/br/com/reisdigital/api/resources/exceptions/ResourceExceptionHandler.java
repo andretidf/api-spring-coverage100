@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class ResourceExceptionHandler {
 
     @ExceptionHandler(ObjectNotFoundException.class)
-    public ResponseEntity<StandardError> objextNotFound(ObjectNotFoundException ex, HttpServletRequest request){
+    public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException ex, HttpServletRequest request){
         StandardError error = new StandardError
                 (LocalDateTime.now(),
                         HttpStatus.NOT_FOUND.value(),
